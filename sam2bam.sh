@@ -19,8 +19,6 @@
 # select the queue all.q, using hostgroup @intelhosts
 #$ -q all.q@@amdhosts
 
-PATH=/mnt/HA/groups/nsftuesGrp/.local/bin:$PATH
-
 # ---- Keep the following
 . /etc/profile.d/modules.sh
 module load shared
@@ -29,33 +27,18 @@ module load sge/univa
 module load gcc/4.8.1
 # ---- Keep the foregoing
 
+PATH=/mnt/HA/groups/nsftuesGrp/.local/bin:$PATH
+
 # Set up variables to keep organized.
-# DATADIR=/mnt/HA/groups/nsftuesGrp/data/tutorial5
-DATADIR=$HOME/devo/tutorial05/data
-INDIR=${DATADIR}/fastq-reads
-mkdir -p $INDIR
-OUTDIR=${TMP}/idbaout
+DATADIR=/mnt/HA/groups/nsftuesGrp/data/tutorial5
+OUTDIR=$HOME/devo/tutorial05/data/bamfiles
 mkdir -p $OUTDIR
+SAMFILES=$DATADIR/*.sam
 
-# Download the requisite data.
-ids=( \
-SRR492065 \
-SRR492066 \
-SRR492182 \
-)
-# for i in "${ids[@]}"
-# do :
-# 	echo $i
-# 	fastq-dump -O $INDIR -A $i
-# done
+for f in $SAMFILES
+do :
+	echo $f
+	newf=$OUTDIR/$(basename $f)
+	samtools view -bS $f > $newf.bam
+done
 
-# Assemble the reads *de novo*.
-idba_ud \
-	-l $INDIR/SRR492065.fastq \
-	$INDIR/SRR492066.fastq \
-	$INDIR/SRR492185.fastq \
-	-o $OUTDIR
-
-# Clean up, clean up, everybody clean up.
-# rm -rf $INDIR
-mv $OUTDIR/* $DATADIR/
