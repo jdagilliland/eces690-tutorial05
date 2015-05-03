@@ -1,3 +1,6 @@
 data/
 lambda-phage/
 lacto/
+*.o*
+*.e*
+core.*
