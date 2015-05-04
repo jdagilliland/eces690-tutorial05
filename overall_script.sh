@@ -54,9 +54,7 @@ mkdir -p $ASSEMBLYDIR
 
 # Assemble the reads *de novo*.
 idba_ud \
-	-l $DATADIR/SRR492065.fastq \
-	$DATADIR/SRR492066.fastq \
-	$DATADIR/SRR492185.fastq \
+	-l $DATADIR/*.fastq \
 	-o $ASSEMBLYDIR
 
 # Set up indexxing with bowtie2.
