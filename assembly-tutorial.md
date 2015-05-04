@@ -39,6 +39,10 @@ It is iterative in the sense that it uses different length *k*-mers to
 construct the graph.
 IDBA performs better than similar earlier tools (e.g. SSAKE, VCAKE,
 SHARCGS) in terms of memory use and time.
+IDBA even performs comparably or better in terms of memory usage and
+assembly accuracy than other tools based on IDBA (e.g. Velvet, Abyss,
+Allpaths) especially when dealing with uneven coverage, and highly error
+prone reads.
 
 ### Using IDBA
 
