@@ -37,6 +37,7 @@ mkdir -p $OUTDIR
 
 # Assemble the reads *de novo*.
 idba_ud \
+	--num_threads 16 \
 	-l $DATADIR/*.fastq \
 	-o $OUTDIR
 
