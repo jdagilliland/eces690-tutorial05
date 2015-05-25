@@ -1,4 +1,4 @@
-# Aligning sequencing data
+# Assembling, aligning, and mapping sequencing data
 
 Sequencing data is collected to study the content of either genomes or
 transcriptomes.
@@ -35,10 +35,14 @@ The tool we will use (IDBA) is an example of a De Bruijn graph method.
 IDBA stands for Iterative De Bruijn Assembler.
 It uses De Bruijn graphs to align sequences even in the absence of
 a reference.
-It is iterative in the sense that it uses different length $k$-mers to
+It is iterative in the sense that it uses different length *k*-mers to
 construct the graph.
 IDBA performs better than similar earlier tools (e.g. SSAKE, VCAKE,
 SHARCGS) in terms of memory use and time.
+IDBA even performs comparably or better in terms of memory usage and
+assembly accuracy than other tools based on IDBA (e.g. Velvet, Abyss,
+Allpaths) especially when dealing with uneven coverage, and highly error
+prone reads.
 
 ### Using IDBA
 
@@ -53,7 +57,7 @@ For this, something along the lines of:
 `idba_ud -l *.fastq -o outputdir`
 is exactly what we need.
 It uses all of the reads from each fastq file, and determines contigs for
-each $k$ value used, placing them in `outputdir`.
+each *k* value used, placing them in `outputdir`.
 The `-l` flag is used to signal that we are providing the algorithm with
 reads longer than 128 bases (in our case: 200 bases).
 
